@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace GradeChecker
 {
@@ -23,6 +24,14 @@ namespace GradeChecker
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void FileLocationButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+            }
         }
     }
 }
