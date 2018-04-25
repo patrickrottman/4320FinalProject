@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.IO.Compression;
+using System.IO;
+using System.Security;
+using System.Security.Permissions;
 
 namespace GradeChecker
 {
@@ -21,6 +25,8 @@ namespace GradeChecker
     /// </summary>
     public partial class MainWindow : Window
     {
+        String ZipFilesLocation;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +37,43 @@ namespace GradeChecker
             using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
                 System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                ZipFilesLocation = dialog.SelectedPath;
+                fileLocation.Text = "Absolute File Path: " + ZipFilesLocation;
+            }
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(ZipFilesLocation != null && ZipFilesLocation != "")
+            {
+                var permissionSet = new PermissionSet(PermissionState.None);
+                var writePermission = new FileIOPermission(FileIOPermissionAccess.Write, ZipFilesLocation);
+                permissionSet.AddPermission(writePermission);
+
+                try
+                {
+                    FileIOPermission fileIOPermission = new FileIOPermission(FileIOPermissionAccess.AllAccess, ZipFilesLocation);
+                    fileIOPermission.Demand();
+                }
+                catch (SecurityException se)
+                {
+                    
+                }
+
+                if (permissionSet.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet))
+                {
+                    string extractPath = ZipFilesLocation + @"\unzipped\";
+                    System.IO.Directory.CreateDirectory(extractPath);
+
+                    //ZipFile.CreateFromDirectory(startPath, zipPath);
+
+                    ZipFile.ExtractToDirectory(ZipFilesLocation, extractPath);
+                }
+                
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please choose file directory first.");
             }
         }
     }

@@ -7,13 +7,15 @@
         mc:Ignorable="d"
         Title="CS Similarity Checker" Height="450" Width="800">
     <Grid>
-        <ListBox Name="FileNames" HorizontalAlignment="Left" Height="348" Margin="510,49,0,0" VerticalAlignment="Top" Width="252"/>
-        <TextBlock Name="StudenFileNames" HorizontalAlignment="Left" Height="31" Margin="512,13,0,0" TextWrapping="Wrap" Text="All Student File Names" FontSize="15px" VerticalAlignment="Top" Width="250"/>
+        <ListBox Name="FileNames" HorizontalAlignment="Left" Height="312" Margin="510,85,0,0" VerticalAlignment="Top" Width="252"/>
+        <TextBlock Name="StudenFileNames" HorizontalAlignment="Left" Height="31" Margin="512,61,0,0" TextWrapping="Wrap" Text="All Student File Names" FontSize="15px" VerticalAlignment="Top" Width="250"/>
         <Button Name="FileLocationButton" Content="Open Zip Directory" HorizontalAlignment="Left" Margin="38,203,0,0" VerticalAlignment="Top" Width="160" Click="FileLocationButton_Click"/>
         <TextBlock HorizontalAlignment="Left" Height="96" Margin="24,16,0,0" TextWrapping="Wrap" Text="1) Choose file location from unzipped canvas download that include student .cs file types" VerticalAlignment="Top" Width="199"/>
-        <ListBox x:Name="FileNames_Copy" HorizontalAlignment="Left" Height="348" Margin="243,49,0,0" VerticalAlignment="Top" Width="252"/>
-        <TextBlock x:Name="SimilarStudenFileNames" HorizontalAlignment="Left" Height="31" Margin="245,13,0,0" TextWrapping="Wrap" Text="Similar Student File Names" FontSize="15px" VerticalAlignment="Top" Width="250"/>
+        <ListBox x:Name="FileNames_Copy" HorizontalAlignment="Left" Height="312" Margin="243,85,0,0" VerticalAlignment="Top" Width="252"/>
+        <TextBlock x:Name="SimilarStudenFileNames" HorizontalAlignment="Left" Height="31" Margin="245,61,0,0" TextWrapping="Wrap" Text="Similar Student File Names" FontSize="15px" VerticalAlignment="Top" Width="250"/>
         <TextBlock HorizontalAlignment="Left" Height="96" Margin="24,85,0,0" TextWrapping="Wrap" Text="2) Check similar student file names in the similar file names list box." VerticalAlignment="Top" Width="199"/>
+        <TextBlock Name="fileLocation" HorizontalAlignment="Left" Height="38" Margin="245,16,0,0" TextWrapping="Wrap" Text="Absolute File Path: " VerticalAlignment="Top" Width="517"/>
+        <Button x:Name="startButton" HorizontalContentAlignment="Center" Content="Start Search" HorizontalAlignment="Left" Margin="38,281,0,0" VerticalAlignment="Top" FontSize="15px" Width="160" Click="startButton_Click"/>
 
     </Grid>
 </Window>
