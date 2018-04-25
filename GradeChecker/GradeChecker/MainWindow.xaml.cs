@@ -34,10 +34,10 @@ namespace GradeChecker
 
         private void FileLocationButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            using (var dialog = new System.Windows.Forms.OpenFileDialog())
             {
                 System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-                ZipFilesLocation = dialog.SelectedPath;
+                ZipFilesLocation = dialog.FileName;
                 fileLocation.Text = "Absolute File Path: " + ZipFilesLocation;
             }
         }
@@ -62,8 +62,9 @@ namespace GradeChecker
 
                 if (permissionSet.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet))
                 {
-                    string extractPath = ZipFilesLocation + @"\unzipped\";
-                    System.IO.Directory.CreateDirectory(extractPath);
+                    string extractPath = @"C:\Users\PatrickRottman\Desktop\submissions\unzipped";
+
+                    //System.IO.Directory.CreateDirectory(extractPath);
 
                     //ZipFile.CreateFromDirectory(startPath, zipPath);
 
