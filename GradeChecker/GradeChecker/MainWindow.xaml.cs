@@ -26,6 +26,7 @@ namespace GradeChecker
     public partial class MainWindow : Window
     {
         String ZipFilesLocation;
+        String ExportFolderLocation;
 
         public MainWindow()
         {
@@ -75,6 +76,16 @@ namespace GradeChecker
             else
             {
                 System.Windows.MessageBox.Show("Please choose file directory first.");
+            }
+        }
+
+        private void FileExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new System.Windows.Forms.OpenFileDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                ExportFolderLocation = dialog.FileName;
+                fileExportLocation.Text = "Absolute Export File Path: " + ZipFilesLocation;
             }
         }
     }
