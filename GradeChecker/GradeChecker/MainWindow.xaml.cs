@@ -45,47 +45,41 @@ namespace GradeChecker
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            if(ZipFilesLocation != null && ZipFilesLocation != "")
+            if((ZipFilesLocation != null && ZipFilesLocation != "") || ExportFolderLocation != null && ExportFolderLocation != "")
             {
-                var permissionSet = new PermissionSet(PermissionState.None);
-                var writePermission = new FileIOPermission(FileIOPermissionAccess.Write, ZipFilesLocation);
-                permissionSet.AddPermission(writePermission);
+                    ZipFile.ExtractToDirectory(ZipFilesLocation, ExportFolderLocation);
 
-                try
+                DirectoryInfo d = new DirectoryInfo(ExportFolderLocation);
+                FileInfo[] Files = d.GetFiles("*.zip");
+                String customFolder;
+                foreach (FileInfo file in Files)
                 {
-                    FileIOPermission fileIOPermission = new FileIOPermission(FileIOPermissionAccess.AllAccess, ZipFilesLocation);
-                    fileIOPermission.Demand();
+                    try
+                    {
+                        customFolder = ExportFolderLocation + @"\" + file.Name.Substring(0, file.Name.Length - 4);
+                        Directory.CreateDirectory(customFolder);
+                        ZipFile.ExtractToDirectory(file.FullName, customFolder);
+                        File.Delete(file.FullName);
+                    }catch(Exception error)
+                    {
+                        System.Windows.MessageBox.Show("Unable to extract " + file.Name + "due to: " + error.Message);
+                    }
                 }
-                catch (SecurityException se)
-                {
-                    
-                }
-
-                if (permissionSet.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet))
-                {
-                    string extractPath = @"C:\Users\PatrickRottman\Desktop\submissions\unzipped";
-
-                    //System.IO.Directory.CreateDirectory(extractPath);
-
-                    //ZipFile.CreateFromDirectory(startPath, zipPath);
-
-                    ZipFile.ExtractToDirectory(ZipFilesLocation, extractPath);
-                }
-                
             }
             else
             {
                 System.Windows.MessageBox.Show("Please choose file directory first.");
+                return;
             }
         }
 
         private void FileExportButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new System.Windows.Forms.OpenFileDialog())
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
                 System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-                ExportFolderLocation = dialog.FileName;
-                fileExportLocation.Text = "Absolute Export File Path: " + ZipFilesLocation;
+                ExportFolderLocation = dialog.SelectedPath;
+                fileExportLocation.Text = "Absolute Export File Path: " + ExportFolderLocation;
             }
         }
     }
