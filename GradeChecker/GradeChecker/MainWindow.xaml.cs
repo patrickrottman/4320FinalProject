@@ -27,6 +27,7 @@ namespace GradeChecker
     {
         String ZipFilesLocation;
         String ExportFolderLocation;
+        List<StudentFile> studentFileList = new List<StudentFile>();
 
         public MainWindow()
         {
@@ -39,16 +40,15 @@ namespace GradeChecker
             {
                 System.Windows.Forms.DialogResult result = dialog.ShowDialog();
                 ZipFilesLocation = dialog.FileName;
-                fileLocation.Text = "Absolute File Path: " + ZipFilesLocation;
+                fileLocation.Text = "Absolute Zip File Path: " + ZipFilesLocation;
             }
         }
 
-        private void startButton_Click(object sender, RoutedEventArgs e)
+        private void startUnzip_Click(object sender, RoutedEventArgs e)
         {
             if((ZipFilesLocation != null && ZipFilesLocation != "") || ExportFolderLocation != null && ExportFolderLocation != "")
             {
-                    ZipFile.ExtractToDirectory(ZipFilesLocation, ExportFolderLocation);
-
+                ZipFile.ExtractToDirectory(ZipFilesLocation, ExportFolderLocation);
                 DirectoryInfo d = new DirectoryInfo(ExportFolderLocation);
                 FileInfo[] Files = d.GetFiles("*.zip");
                 String customFolder;
@@ -62,7 +62,7 @@ namespace GradeChecker
                         File.Delete(file.FullName);
                     }catch(Exception error)
                     {
-                        System.Windows.MessageBox.Show("Unable to extract " + file.Name + "due to: " + error.Message);
+                        System.Windows.MessageBox.Show("Unable to extract " + file.Name + " due to: " + error.Message);
                     }
                 }
             }
@@ -81,6 +81,38 @@ namespace GradeChecker
                 ExportFolderLocation = dialog.SelectedPath;
                 fileExportLocation.Text = "Absolute Export File Path: " + ExportFolderLocation;
             }
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            WalkDirectoryTree(new DirectoryInfo(ExportFolderLocation));
+        }
+
+        private void WalkDirectoryTree(DirectoryInfo dr)
+        {
+            String studentFileName;
+            foreach (FileInfo file in FindFiles(dr, "*.xaml.cs"))
+            {
+                // process file
+                if (file.Name != "App.xaml.cs")
+                {
+                    studentFileName = file.FullName.Replace(ExportFolderLocation, "");
+                    studentFileName = studentFileName.Substring(1, studentFileName.Length-1);
+                    studentFileName = studentFileName.Substring(0, studentFileName.IndexOf(@"\"));
+                    //file.Name.Substring(0, file.Name.Length - 4);
+
+
+                    StudentFile tempStudent = new StudentFile(studentFileName, System.IO.File.ReadAllText(file.FullName));
+                    studentFileList.Add(tempStudent);
+                    FileNames.Items.Add(tempStudent.fileName);
+                }
+                
+                
+            }
+        }
+        public IEnumerable<FileInfo> FindFiles(DirectoryInfo startDirectory, string pattern)
+        {
+            return startDirectory.EnumerateFiles(pattern, SearchOption.AllDirectories);
         }
     }
 }
