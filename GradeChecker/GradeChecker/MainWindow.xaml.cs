@@ -114,5 +114,16 @@ namespace GradeChecker
         {
             return startDirectory.EnumerateFiles(pattern, SearchOption.AllDirectories);
         }
+
+        public void SmilarityinPercentage(String original, String comparison)
+        {
+            // code from http://www.dotnetworld.in/2013/05/c-find-similarity-between-two-strings.html
+            string[] splitString1 = original.Split(' ');
+            string[] splitString2 = comparison.Split(' ');
+            var strCommon = splitString1.Intersect(splitString2);
+            //Formula : Similarity (%) = 100 * (CommonItems * 2) / (Length of String1 + Length of String2)
+            double Similarity = (double)(100 * (strCommon.Count() * 2)) / (splitString1.Length + splitString2.Length);
+            Console.WriteLine("Strings are {0}% similar", Similarity.ToString("0.00"));
+        }
     }
 }
