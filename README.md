@@ -18,4 +18,4 @@
 
 ## Image of Product 
 
-![Image of Product](4320FinalProject/pastedImage.pngx)
+![Image of Product](https://github.com/patrickrottman/4320FinalProject/pastedImage.png)
