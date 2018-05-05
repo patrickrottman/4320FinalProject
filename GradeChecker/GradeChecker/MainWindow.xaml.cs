@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -171,6 +171,10 @@ namespace GradeChecker
             //Formula : Similarity (%) = 100 * (CommonItems * 2) / (Length of String1 + Length of String2)
             double Similarity = (double)(100 * (strCommon.Count() * 2)) / (splitString1.Count() + splitString2.Count());
             Console.WriteLine("Strings are {0}% similar", Similarity.ToString("0.00"));
+
+            int oldCount = int.Parse(counter.Text);
+            counter.Text = "Lines of code compared: " + splitString1.Count() + splitString2.Count() + oldCount;
+
             return Similarity;
         }
     }
