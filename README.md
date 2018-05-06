@@ -1,12 +1,12 @@
 # Cheat Checker
 
 # Team Members
-Patrick Rottman
-Andrew Kammerich
-Nicole Dillon
-Ethan Moss
-Anand Kulkarni
-Joe Timlin
+* Patrick Rottman
+* Andrew Kammerich
+* Nicole Dillon
+* Ethan Moss
+* Anand Kulkarni
+* Joe Timlin
 
 ## Description
 #### This product is designed to help instructors catch people attempting to cheat on projects or assignments based around coding. The product takes in multiple files of code, compares them and checks to see if any of the students have copied or shared any code. 
