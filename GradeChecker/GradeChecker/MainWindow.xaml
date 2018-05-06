@@ -1,4 +1,4 @@
-﻿<Window x:Class="GradeChecker.MainWindow"
+<Window x:Class="GradeChecker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,18 +7,24 @@
         mc:Ignorable="d"
         Title="CS Similarity Checker" Height="450" Width="1246.33">
     <Grid>
-        <ListBox Name="FileNames" Margin="956,85,0,24.714" HorizontalAlignment="Left" Width="261"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <ListBox Name="FileNames" Margin="956,85,0,24.667" HorizontalAlignment="Left" Width="261" Grid.RowSpan="2"/>
         <TextBlock Name="StudenFileNames" HorizontalAlignment="Left" Height="31" Margin="956,49,0,0" TextWrapping="Wrap" Text="All Student File Names" FontSize="15px" VerticalAlignment="Top" Width="250"/>
-        <Button Name="FileLocationButton" Content="Choose Canvas Zip File" HorizontalAlignment="Left" Margin="38,203,0,0" VerticalAlignment="Top" Width="160" Click="FileLocationButton_Click"/>
+        <Button Name="FileLocationButton" Content="Choose Canvas Zip File" HorizontalAlignment="Left" Margin="38,85.641,0,0" VerticalAlignment="Top" Width="160" Click="FileLocationButton_Click" Grid.Row="1"/>
         <TextBlock HorizontalAlignment="Left" Height="96" Margin="24,16,0,0" TextWrapping="Wrap" Text="1) Choose file location from unzipped canvas download that include student .cs file types" VerticalAlignment="Top" Width="199"/>
-        <ListBox x:Name="SimilarStudentFileNames" Margin="243,85,0,24.714" HorizontalAlignment="Left" Width="692"/>
+        <ListBox x:Name="SimilarStudentFileNames" Margin="243,85,0,24.667" HorizontalAlignment="Left" Width="692" Grid.RowSpan="2"/>
         <TextBlock x:Name="SimilarStudenFileNames" HorizontalAlignment="Left" Height="31" Margin="245,61,0,0" TextWrapping="Wrap" Text="Similar Student File Names" FontSize="15px" VerticalAlignment="Top" Width="250"/>
-        <TextBlock HorizontalAlignment="Left" Height="96" Margin="24,85,0,0" TextWrapping="Wrap" Text="2) Check similar student file names in the similar file names list box." VerticalAlignment="Top" Width="199"/>
+        <TextBlock HorizontalAlignment="Left" Height="96" Margin="24,85,0,0" TextWrapping="Wrap" Text="2) Check similar student file names in the similar file names list box." VerticalAlignment="Top" Width="199" Grid.RowSpan="2"/>
         <TextBlock Name="fileLocation" HorizontalAlignment="Left" Height="19" Margin="245,16,0,0" TextWrapping="Wrap" Text="Absolute Zip File Path: " VerticalAlignment="Top" Width="517"/>
-        <Button x:Name="startButton" HorizontalContentAlignment="Center" Content="Start Search" HorizontalAlignment="Left" Margin="38,356,0,0" VerticalAlignment="Top" FontSize="15px" Width="160" Click="startButton_Click"/>
-        <Button x:Name="FileExportButton" Content="Choose Export Directory" HorizontalAlignment="Left" Margin="38,244,0,0" VerticalAlignment="Top" Width="160" Click="FileExportButton_Click"/>
+        <Button x:Name="startButton" HorizontalContentAlignment="Center" Content="Start Search" HorizontalAlignment="Left" Margin="38,238.641,0,0" VerticalAlignment="Top" FontSize="15px" Width="160" Click="startButton_Click" Grid.Row="1"/>
+        <Button x:Name="FileExportButton" Content="Choose Export Directory" HorizontalAlignment="Left" Margin="38,126.641,0,0" VerticalAlignment="Top" Width="160" Click="FileExportButton_Click" Grid.Row="1"/>
         <TextBlock x:Name="fileExportLocation" HorizontalAlignment="Left" Height="19" Margin="245,35,0,0" TextWrapping="Wrap" Text="Absolute Export File Path: " VerticalAlignment="Top" Width="517"/>
-        <Button x:Name="startUnzip" HorizontalContentAlignment="Center" Content="Start Unzipping" HorizontalAlignment="Left" Margin="38,299,0,0" VerticalAlignment="Top" FontSize="15px" Width="160" Click="startUnzip_Click"/>
+        <Button x:Name="startUnzip" HorizontalContentAlignment="Center" Content="Start Unzipping" HorizontalAlignment="Left" Margin="38,181.641,0,0" VerticalAlignment="Top" FontSize="15px" Width="160" Click="startUnzip_Click" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="956,16,0,0" TextWrapping="Wrap" Name="linesCounted" Text="Lines of code compared:" VerticalAlignment="Top" Height="19" Width="146"/>
+        <TextBlock HorizontalAlignment="Left" Margin="1098,16,-3.429,0" TextWrapping="Wrap" Name="counter" Text="0" VerticalAlignment="Top" Height="19" Width="146"/>
 
     </Grid>
 </Window>
