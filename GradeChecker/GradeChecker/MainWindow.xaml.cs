@@ -126,7 +126,34 @@ namespace GradeChecker
 
                     StudentFile tempStudent = new StudentFile(studentFileName, System.IO.File.ReadAllText(file.FullName));
                     studentFileList.Add(tempStudent);
-                    FileNames.Items.Add(tempStudent.fileName);
+
+                    bool checking = true;
+
+                    if(!FileNames.HasItems)
+                    {
+                        FileNames.Items.Add(tempStudent.fileName);
+                    }
+                    else
+                    {
+                        foreach (var name in FileNames.Items)
+                        {
+                            if (name.ToString().Equals(tempStudent.fileName))
+                            {
+                                checking = false;
+                            }
+                        }
+                        if(checking == true)
+                        {
+                            FileNames.Items.Add(tempStudent.fileName);
+                        }
+
+                    }
+
+
+
+                    
+
+
                 }
                 
                 
