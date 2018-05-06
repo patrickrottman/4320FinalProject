@@ -16,6 +16,8 @@
 
 #### After it has finished doing this for all of the students the program then displays the name of the students who had similar code. With this the product displays the precentage of code that it noticed was the same for the students. 
 
+#### The product also displays all of the lines that it has comapred to show the user how many lines of code were compared. 
+
 ## Image of Product 
 
 ![Image of Product](https://github.com/patrickrottman/4320FinalProject/blob/master/pastedImage.png)
