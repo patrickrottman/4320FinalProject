@@ -23,7 +23,8 @@
         <Button x:Name="FileExportButton" Content="Choose Export Directory" HorizontalAlignment="Left" Margin="38,126.641,0,0" VerticalAlignment="Top" Width="160" Click="FileExportButton_Click" Grid.Row="1"/>
         <TextBlock x:Name="fileExportLocation" HorizontalAlignment="Left" Height="19" Margin="245,35,0,0" TextWrapping="Wrap" Text="Absolute Export File Path: " VerticalAlignment="Top" Width="517"/>
         <Button x:Name="startUnzip" HorizontalContentAlignment="Center" Content="Start Unzipping" HorizontalAlignment="Left" Margin="38,181.641,0,0" VerticalAlignment="Top" FontSize="15px" Width="160" Click="startUnzip_Click" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="956,16,0,0" TextWrapping="Wrap" Name="counter" Text="Lines of code compared: 0" VerticalAlignment="Top" Height="19" Width="261"/>
+        <TextBlock HorizontalAlignment="Left" Margin="956,16,0,0" TextWrapping="Wrap" Name="linesCounted" Text="Lines of code compared:" VerticalAlignment="Top" Height="19" Width="146"/>
+        <TextBlock HorizontalAlignment="Left" Margin="1098,16,-3.429,0" TextWrapping="Wrap" Name="counter" Text="0" VerticalAlignment="Top" Height="19" Width="146"/>
 
     </Grid>
 </Window>

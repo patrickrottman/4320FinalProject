@@ -91,9 +91,9 @@ namespace GradeChecker
             Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait; // set the cursor to loading spinner
             WalkDirectoryTree(new DirectoryInfo(ExportFolderLocation));
 
-            foreach(StudentFile student in studentFileList)
+            foreach(StudentFile student in studentFileList.ToList())
             {
-                foreach(StudentFile innerStudent in studentFileList)
+                foreach(StudentFile innerStudent in studentFileList.ToList())
                 {
                     if(student.fileName != innerStudent.fileName)
                     {
@@ -103,6 +103,7 @@ namespace GradeChecker
                             SimilarStudentFileNames.Items.Add(student.fileName + " and " + innerStudent.fileName + " are " + similarity.ToString("0.00") + "% similar.");
                         }
                     }
+                    studentFileList.Remove(innerStudent);
                 }
             }
             Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow; // set the cursor back to arrow
@@ -172,8 +173,9 @@ namespace GradeChecker
             double Similarity = (double)(100 * (strCommon.Count() * 2)) / (splitString1.Count() + splitString2.Count());
             Console.WriteLine("Strings are {0}% similar", Similarity.ToString("0.00"));
 
-            int oldCount = int.Parse(counter.Text);
-            counter.Text = "Lines of code compared: " + splitString1.Count() + splitString2.Count() + oldCount;
+            ulong oldCount = ulong.Parse(counter.Text) + ulong.Parse(splitString1.Count().ToString()) * ulong.Parse(splitString2.Count().ToString());
+
+            counter.Text = oldCount.ToString();
 
             return Similarity;
         }
