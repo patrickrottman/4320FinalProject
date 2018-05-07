@@ -32,3 +32,7 @@
 ## Image of Product 
 
 ![Image of Product](https://github.com/patrickrottman/4320FinalProject/blob/master/pastedImage.png)
+
+## Video Walkthrough
+[![](http://img.youtube.com/vi/r5ZKGg4_qbA/0.jpg)](http://www.youtube.com/watch?v=r5ZKGg4_qbA "")
+
